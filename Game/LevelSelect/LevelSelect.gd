@@ -6,17 +6,12 @@ var ROWS = 6
 func _ready():
 	var grid_container = $GridContainer
 	
-	var font = preload("res://Assets/LevelSelectButtonFont.tres")
-	for i in range(0, COLUMNS * ROWS):
-		var button = Button.new()
-		button.add_font_override("Test", font)
-		grid_container.add_child(button)
+	var font = preload("res://Game/LevelSelect/LevelSelectButtonFont.tres")
 	
 	var total_spacing = Vector2(grid_container.spacing * (COLUMNS - 1), grid_container.spacing * (ROWS - 1))
 	grid_container.cell_size.x = (grid_container.rect_size.x - total_spacing.x) / COLUMNS
 	grid_container.cell_size.y = (grid_container.rect_size.y - total_spacing.y) / ROWS
 	
-	var levels = {}
 	var dir = Directory.new()
 	dir.open("res://Levels")
 	dir.list_dir_begin()
@@ -30,21 +25,15 @@ func _ready():
 			push_warning("Unable to display all levels: Too many levels")
 			break
 		
-		levels[level_name] = load("res://Levels/%s" % [level_name]).instance()
+		var button = Button.new()
+		button.add_font_override("Test", font)
+		grid_container.add_child(button)
+		button.text = level_name
+		button.connect("button_up", self, "level_init", [load("res://Levels/%s" % [level_name]).instance()])
+
 		i += 1
 	
 	dir.list_dir_end()
-	
-	i = 0
-	for button in grid_container.get_children():
-		if i >= levels.size():
-			button.disabled = true
-			continue
-		
-		button.text = levels.keys()[i]
-		button.connect("button_up", self, "level_init", [levels.values()[i]])
-		i += 1
-		pass
 
 
 func level_init(level):
@@ -77,7 +66,7 @@ func set_enemies_labels(node):
 		print(N.is_class("Enemy"))
 		if N.is_class("Enemy"):
 			var label = Label.new()
-			label.theme = load("./Assets/DebugTheme.tres")
+			label.theme = load("Game/DebugTheme.tres")
 			label.text = N.name
 			get_parent().add_child(label)
 			label.rect_position = N.position + Vector2(0 - (label.rect_size.x / 2), -60)

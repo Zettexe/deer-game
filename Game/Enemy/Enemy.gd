@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name Enemy
 
 onready var sprite = $Sprite
-var new_mat = preload("res://ColorShader.tres")
+var new_mat = preload("res://Game/Enemy/ColorShader.tres")
 
 func damage_event():
 	sprite.material = new_mat

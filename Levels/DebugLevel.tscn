@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://DebugTiles32x32.tres" type="TileSet" id=1]
-[ext_resource path="res://Respawn.gd" type="Script" id=2]
-[ext_resource path="res://Game/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/DebugTiles32x32.tres" type="TileSet" id=1]
+[ext_resource path="res://Game/Respawn.gd" type="Script" id=2]
+[ext_resource path="res://Game/Enemy/Enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100000, 100 )

@@ -41,7 +41,7 @@ func debug_init():
 	print("** %s to cycle weapon modes" % get_action_keys("cycle_weapon_mode"))
 	print("** %s to shoot" % get_action_keys("shoot"))
 	
-	level_select = preload("res://Assets/LevelSelect.tscn").instance()
+	level_select = preload("res://Game/LevelSelect/LevelSelect.tscn").instance()
 	add_child(level_select)
 
 

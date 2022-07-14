@@ -65,4 +65,4 @@ nodes/run_speed/node = SubResource( 15 )
 nodes/run_speed/position = Vector2( -100, 80 )
 nodes/walk_speed/node = SubResource( 16 )
 nodes/walk_speed/position = Vector2( -100, -40 )
-node_connections = [ "output", 0, "in_air_state", "run_speed", 0, "Run", "jump_state", 0, "Jump", "jump_state", 1, "Fall", "in_air_state", 0, "movement_state", "in_air_state", 1, "jump_state", "walk_speed", 0, "Walk", "movement_state", 0, "Idle", "movement_state", 1, "walk_speed", "movement_state", 2, "run_speed" ]
+node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement_state", "in_air_state", 1, "jump_state", "jump_state", 0, "Jump", "jump_state", 1, "Fall", "movement_state", 0, "Idle", "movement_state", 1, "walk_speed", "movement_state", 2, "run_speed", "walk_speed", 0, "Walk", "run_speed", 0, "Run" ]

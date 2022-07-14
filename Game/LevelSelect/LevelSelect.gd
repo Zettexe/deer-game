@@ -50,20 +50,14 @@ func level_init(level):
 	
 	# TODO: Add level changing system
 	game.add_child(level)
-	
 	game.add_child(player)
 	
 	set_enemies_labels(level)
 	
-#	var a_enemy = get_node("Attacking Enemy/AnimationTree")
-#	if a_enemy:
-#		a_enemy.set("parameters/state/current", 2)
 	game.remove_child(self)
 
 func set_enemies_labels(node):
 	for N in node.get_children():
-		print(N.name)
-		print(N.is_class("Enemy"))
 		if N.is_class("Enemy"):
 			var label = Label.new()
 			label.theme = load("Game/DebugTheme.tres")

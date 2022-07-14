@@ -71,6 +71,9 @@ func _physics_process(delta):
 		if gun_mode >= Gun_Mode.size():
 			gun_mode = 0
 		gun_mode_label.text = "Weapon Mode: " + Gun_Mode.keys()[gun_mode]
+		
+	if Input.is_action_just_pressed("respawn"):
+		position = Vector2.ZERO
 
 func on_floor_checks():
 	if is_on_floor():

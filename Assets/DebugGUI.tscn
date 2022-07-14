@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/DebugTheme.tres" type="Theme" id=1]
+
+[node name="DebugGUI" type="CanvasLayer"]
+
+[node name="CameraSlider" type="HSlider" parent="."]
+margin_left = 9.0
+margin_top = 29.0
+margin_right = 209.0
+margin_bottom = 45.0
+theme = ExtResource( 1 )
+min_value = 0.5
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Label" type="Label" parent="CameraSlider"]
+margin_top = -21.0
+margin_right = 122.0
+margin_bottom = -2.0
+theme = ExtResource( 1 )
+text = "Camera Distance"
+
+[node name="StartValueLabel" type="Label" parent="CameraSlider"]
+margin_left = 65.0
+margin_top = 16.0
+margin_right = 74.0
+margin_bottom = 46.0
+theme = ExtResource( 1 )
+text = "^"
+
+[node name="WeaponModeLabel" type="Label" parent="."]
+margin_left = 9.0
+margin_top = 572.0
+margin_right = 194.0
+margin_bottom = 591.0
+theme = ExtResource( 1 )
+text = "Weapon Mode: SHOTGUN"
+
+[node name="FPSLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -29.0
+margin_top = 3.0
+margin_right = -8.0
+margin_bottom = 20.0
+grow_horizontal = 0
+theme = ExtResource( 1 )
+text = "60"
+align = 2

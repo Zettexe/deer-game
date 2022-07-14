@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/fixed_size_grid_container/fixed_size_grid_container.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/montreal/Montreal.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/DebugTheme.tres" type="Theme" id=3]
+[ext_resource path="res://Assets/LevelSelect.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="GridContainer" type="Container" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 102.0
+margin_right = -16.0
+margin_bottom = -16.0001
+script = ExtResource( 1 )
+cell_size = Vector2( 185, 67 )
+spacing = 16.0
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.015625
+anchor_top = 0.0266667
+anchor_right = 0.984375
+anchor_bottom = 0.14
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
+text = "Level Select"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": true
+}

@@ -28,7 +28,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 30, 25 )
+extents = Vector2( 20.75, 25 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 9 )
@@ -39,9 +39,9 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/in_air_state/current = 0
 parameters/jump_state/current = 0
-parameters/movement_state/current = 0
+parameters/movement_state/current = 1
 parameters/run_speed/scale = 1.5
-parameters/walk_speed/scale = 1.0
+parameters/walk_speed/scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Falling = ExtResource( 5 )
@@ -53,13 +53,14 @@ anims/Run = ExtResource( 7 )
 anims/Walk = ExtResource( 3 )
 
 [node name="Main" type="Sprite" parent="."]
+position = Vector2( 0, -26.8 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 hframes = 5
 vframes = 10
 
 [node name="Gun" type="Sprite" parent="Main"]
-position = Vector2( 100, -80 )
+position = Vector2( 122, -90 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 1 )
 
@@ -71,7 +72,7 @@ vframes = 3
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -3, -1.086e-05 )
+position = Vector2( -9.04998e-07, -20.75 )
 rotation = 1.5708
 shape = SubResource( 3 )
 
@@ -80,3 +81,6 @@ position = Vector2( 0, -50 )
 current = true
 smoothing_enabled = true
 smoothing_speed = 10.0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -7, 0 )

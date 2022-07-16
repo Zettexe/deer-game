@@ -26,7 +26,7 @@ func _ready():
 			break
 		
 		var button = Button.new()
-		button.add_font_override("Test", font)
+		button.add_font_override("font", font)
 		grid_container.add_child(button)
 		button.text = level_name
 		button.connect("button_up", self, "level_init", [load("res://Levels/%s" % [level_name]).instance()])

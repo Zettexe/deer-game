@@ -23,6 +23,7 @@ var motion = Vector2()
 var action_strength = 0
 var time_held_drop = 0
 
+
 func _ready():
 	get_parent().get_node("./DebugGUI/CameraSlider").value = $Camera2D.zoom.x
 	anim_tree.active = true
@@ -37,10 +38,8 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	action_strength = Input.get_action_strength("left") + Input.get_action_strength("right")
-	action_strength = action_strength if action_strength > DEADZONE else 0
-
-#	action_strength = 0.5
+	action_strength = Input.get_axis("left", "right")
+	action_strength = action_strength if abs(action_strength) > DEADZONE else 0
 
 	direction = main_sprite.scale.x / abs(main_sprite.scale.x)
 
@@ -58,17 +57,17 @@ func _physics_process(delta):
 		anim_tree.set("parameters/movement_state/current", 0)
 		motion.x = lerp(motion.x, 0, 0.2)
 
-	motion.x = clamp(motion.x, -MAX_SPEED * action_strength, MAX_SPEED * action_strength)
+	motion.x = clamp(motion.x, -MAX_SPEED * abs(action_strength), MAX_SPEED * abs(action_strength))
 
 	var walk_speed = (
 		((abs(motion.x) - (MAX_SPEED * DEADZONE)) / (MAX_SPEED / 2) + (0.2 * (MAX_SPEED / 300)))
 		* 2
 	)
 	anim_tree.set("parameters/walk_speed/scale", walk_speed)
-
+	print(motion.x)
 	if action_strength:
 		anim_tree.set("parameters/movement_state/current", 1)
-		if abs(motion.x) >= (MAX_SPEED / 2):
+		if abs(motion.x) >= (MAX_SPEED / 3):
 			anim_tree.set("parameters/movement_state/current", 2)
 
 	on_floor_checks()
@@ -98,7 +97,7 @@ func on_floor_checks():
 	if is_on_floor():
 		anim_tree.set("parameters/in_air_state/current", 0)
 		if Input.is_action_just_pressed("jump"):
-			if Input.is_action_pressed("down") and action_strength != 0:
+			if Input.is_action_pressed("down") and action_strength < 0.2:
 				position.y += 1
 			else:
 				anim_tree.set("parameters/jump_state/current", 0)

@@ -25,7 +25,7 @@ input_2/name = "Attack"
 input_2/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=2]
-graph_offset = Vector2( -466.827, 74.5179 )
+graph_offset = Vector2( -466.827, -2.63428 )
 nodes/Attack/node = SubResource( 4 )
 nodes/Attack/position = Vector2( -200, 300 )
 nodes/Idle/node = SubResource( 5 )

@@ -42,9 +42,10 @@ func level_init(level):
 	
 	# If plane spawn point is defined spawn it there
 	# Otherwise leave it to default
-	var player_spawn = level.get_node("plane_spawn")
+	var player_spawn = level.get_node("player_spawn")
 	if player_spawn:
-		player.transform = player_spawn.transform
+		player.position = player_spawn.position
+	
 	
 	var game = get_parent()
 	

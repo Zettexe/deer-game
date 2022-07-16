@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 const UP = Vector2(0, -1)
 const GRAVITY = 1000
 const MAX_FALL_SPEED = 500
@@ -97,3 +99,6 @@ func create_pellet(scene, random = 0):
 	pellet.global_position = pellet_exit
 	pellet.direction = Vector2(direction, random)
 	get_parent().add_child(pellet)
+
+func is_class(c_name: String):
+	return c_name == "Player"

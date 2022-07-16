@@ -9,6 +9,9 @@ extents = Vector2( 100000, 100 )
 
 [node name="DebugLevel" type="Node"]
 
+[node name="player_spawn" type="Position2D" parent="."]
+position = Vector2( 1647, -542 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )

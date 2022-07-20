@@ -58,13 +58,17 @@ func level_init(level):
 	game.remove_child(self)
 
 func set_enemies_labels(node):
+	var container = Node2D.new()
+	get_parent().add_child(container)
 	for N in node.get_children():
 		if N.is_class("Enemy"):
 			var label = Label.new()
 			label.theme = load("Game/DebugTheme.tres")
 			label.text = N.name
-			get_parent().add_child(label)
+			container.add_child(label)
 			label.rect_position = N.position + Vector2(0 - (label.rect_size.x / 2), -60)
+			label.anchor_bottom
+			N.label = label
 			continue
 		
 		if N.get_child_count() > 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Deer/Gun.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Deer/Deer Spritesheet.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Game/Player/Player.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Deer/Muzzle Flash/Flash.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Deer/Animations/PlayerAnimTree.tres" type="AnimationNodeBlendTree" id=11]
+[ext_resource path="res://Assets/Sounds/Guns/gun.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Sounds/Deer/Footstep.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -28,9 +30,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 20.75, 25 )
+extents = Vector2( 19, 21 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 5
 script = ExtResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -53,8 +56,9 @@ anims/Run = ExtResource( 7 )
 anims/Walk = ExtResource( 3 )
 
 [node name="Main" type="Sprite" parent="."]
-position = Vector2( 0, -26.8 )
+position = Vector2( 1, -30 )
 scale = Vector2( 0.2, 0.2 )
+z_index = 1
 texture = ExtResource( 2 )
 hframes = 5
 vframes = 8
@@ -72,8 +76,7 @@ vframes = 3
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( -9.04998e-07, -20.75 )
+position = Vector2( -7.27177e-06, -19 )
 rotation = 1.5708
 shape = SubResource( 3 )
 
@@ -83,5 +86,9 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( -7, 0 )
+[node name="GunPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+volume_db = 10.0
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )

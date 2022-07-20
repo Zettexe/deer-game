@@ -17,8 +17,6 @@ func _physics_process(delta):
 	if collision == null: 
 		return
 	
-	print(collision.collider.name)
-	
 	# Failsafe
 	if not collision.collider.has_method("damage_event"):
 		print(collision.collider.name + " does not have a damage state")

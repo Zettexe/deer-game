@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sniff idle.wav-548b30f1422b0404917e1eee4c88b971.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Enemy/sniff idle.wav"
+dest_files=[ "res://.import/sniff idle.wav-548b30f1422b0404917e1eee4c88b971.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

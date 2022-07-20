@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/damage 3.wav-3beb06ca199247e942c40d683ec8baa0.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Enemy/damage 3.wav"
+dest_files=[ "res://.import/damage 3.wav-3beb06ca199247e942c40d683ec8baa0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

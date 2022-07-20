@@ -43,7 +43,7 @@ input_2/auto_advance = false
 [sub_resource type="AnimationNodeTimeScale" id=16]
 
 [resource]
-graph_offset = Vector2( -186.052, -83.16 )
+graph_offset = Vector2( -570.451, -94.6732 )
 nodes/Fall/node = SubResource( 9 )
 nodes/Fall/position = Vector2( 140, 200 )
 nodes/Idle/node = SubResource( 6 )

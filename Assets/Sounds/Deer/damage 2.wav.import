@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/damage 2.wav-95342170297c3037bc8347a558ddae9a.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Deer/damage 2.wav"
+dest_files=[ "res://.import/damage 2.wav-95342170297c3037bc8347a558ddae9a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

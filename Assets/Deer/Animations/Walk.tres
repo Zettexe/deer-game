@@ -11,10 +11,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.16, 0.22, 0.34, 0.42, 0.5, 0.6, 0.64 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.16, 0.22, 0.34, 0.42 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23 ]
+"values": [ 12, 13, 14, 15, 16, 20 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Main/Gun:position")
@@ -23,10 +23,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.16, 0.22, 0.34, 0.41, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.16, 0.22, 0.336512, 0.41 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 120, -90 ), Vector2( 124, -90 ), Vector2( 121, -90 ), Vector2( 122, -90 ), Vector2( 120, -90 ), Vector2( 122, -90 ), Vector2( 121, -90 ), Vector2( 123, -90 ) ]
+"values": [ Vector2( 60, -90 ), Vector2( 124, -90 ), Vector2( 121, -90 ), Vector2( 122, -90 ), Vector2( 120, -90 ), Vector2( 122, -90 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Main/Gun:rotation_degrees")
@@ -47,15 +47,9 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.158866, 0.218147, 0.5, 0.643508 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.158866, 0.218147 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [  ],
-"method": "_play_footstep"
-}, {
-"args": [  ],
-"method": "_play_footstep"
-}, {
 "args": [  ],
 "method": "_play_footstep"
 }, {

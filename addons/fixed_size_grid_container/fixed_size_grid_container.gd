@@ -13,6 +13,8 @@ enum Direction {
 export(Direction) var direction = Direction.HORIZONTAL setget set_direction
 export(Vector2) var cell_size = Vector2(64, 64) setget set_cell_size
 export(float) var spacing = 8 setget set_spacing
+export(int) var columns = 0 setget set_columns
+export(int) var rows = 0 setget set_rows
 
 var _current_cell_size: Vector2
 var _grid_rect: Rect2
@@ -48,11 +50,33 @@ func set_spacing(value: float) -> void:
 		queue_sort()
 
 
+func set_columns(value: int):
+	if value > 0:
+		cell_size.x = (rect_size.x - spacing * (value - 1)) / value
+		property_list_changed_notify()
+		queue_sort()
+	columns = value
+
+
+func set_rows(value: int):
+	if value > 0:
+		cell_size.y = (rect_size.y - spacing * (value - 1)) / value
+		property_list_changed_notify()
+		queue_sort()
+	rows = value
+	
+
 func _resort() -> void:
 	var initial_cell_size = _current_cell_size
 	var initial_grid_rect = _grid_rect
 	# recalculate _current_cell_size based on minimum sizes
 	_current_cell_size = cell_size
+	
+	if columns > 0:
+		_current_cell_size.x = (rect_size.x - spacing * (columns - 1)) / columns
+	if rows > 0:
+		_current_cell_size.y = (rect_size.y - spacing * (rows - 1)) / rows
+		
 	var managed_children = []
 	for c in get_children():
 		if not c is Control or not c.visible or c.is_set_as_toplevel():

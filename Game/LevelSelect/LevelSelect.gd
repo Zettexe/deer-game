@@ -1,16 +1,9 @@
 extends Control
 
-var COLUMNS = 5
-var ROWS = 6
-
 func _ready():
 	var grid_container = $GridContainer
 	
 	var font = preload("res://Game/LevelSelect/LevelSelectButtonFont.tres")
-	
-	var total_spacing = Vector2(grid_container.spacing * (COLUMNS - 1), grid_container.spacing * (ROWS - 1))
-	grid_container.cell_size.x = (grid_container.rect_size.x - total_spacing.x) / COLUMNS
-	grid_container.cell_size.y = (grid_container.rect_size.y - total_spacing.y) / ROWS
 	
 	var dir = Directory.new()
 	dir.open("res://Levels")
@@ -21,7 +14,7 @@ func _ready():
 		var level_name = dir.get_next()
 		if level_name == "": break
 		if level_name.begins_with("."): continue
-		if i >= COLUMNS * ROWS: 
+		if i >= grid_container.columns * grid_container.rows: 
 			push_warning("Unable to display all levels: Too many levels")
 			break
 		
@@ -46,16 +39,10 @@ func level_init(level):
 	if player_spawn:
 		player.position = player_spawn.position
 	
+#	set_enemies_labels(level)
 	
-	var game = get_parent()
+	get_parent()._level_selected(player, level)
 	
-	# TODO: Add level changing system
-	game.add_child(level)
-	game.add_child(player)
-	
-	set_enemies_labels(level)
-	
-	game.remove_child(self)
 
 func set_enemies_labels(node):
 	var container = Node2D.new()

@@ -19,8 +19,10 @@ margin_top = -0.440002
 margin_right = -16.0
 margin_bottom = -16.0
 script = ExtResource( 4 )
-cell_size = Vector2( 185, 67 )
+cell_size = Vector2( 152, 80.928 )
 spacing = 16.0
+columns = 6
+rows = 5
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.015625

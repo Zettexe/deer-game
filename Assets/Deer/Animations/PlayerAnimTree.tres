@@ -1,4 +1,7 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=11 format=2]
+[gd_resource type="AnimationNodeBlendTree" load_steps=12 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Falling Fast"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Falling"
@@ -23,11 +26,13 @@ input_1/name = "Air"
 input_1/auto_advance = false
 
 [sub_resource type="AnimationNodeTransition" id=14]
-input_count = 2
+input_count = 3
 input_0/name = "Jumping"
 input_0/auto_advance = false
 input_1/name = "Falling"
 input_1/auto_advance = false
+input_2/name = "Falling Fast"
+input_2/auto_advance = false
 
 [sub_resource type="AnimationNodeTransition" id=8]
 input_count = 3
@@ -43,9 +48,11 @@ input_2/auto_advance = false
 [sub_resource type="AnimationNodeTimeScale" id=16]
 
 [resource]
-graph_offset = Vector2( -570.451, -94.6732 )
+graph_offset = Vector2( -202.977, 88.8521 )
 nodes/Fall/node = SubResource( 9 )
 nodes/Fall/position = Vector2( 140, 200 )
+"nodes/Fall Fast/node" = SubResource( 17 )
+"nodes/Fall Fast/position" = Vector2( 120, 320 )
 nodes/Idle/node = SubResource( 6 )
 nodes/Idle/position = Vector2( -100, -160 )
 nodes/Jump/node = SubResource( 13 )
@@ -65,4 +72,4 @@ nodes/run_speed/node = SubResource( 15 )
 nodes/run_speed/position = Vector2( -100, 80 )
 nodes/walk_speed/node = SubResource( 16 )
 nodes/walk_speed/position = Vector2( -100, -40 )
-node_connections = [ "output", 0, "in_air_state", "run_speed", 0, "Run", "movement_state", 0, "Idle", "movement_state", 1, "walk_speed", "movement_state", 2, "run_speed", "walk_speed", 0, "Walk", "in_air_state", 0, "movement_state", "in_air_state", 1, "jump_state", "jump_state", 0, "Jump", "jump_state", 1, "Fall" ]
+node_connections = [ "output", 0, "in_air_state", "in_air_state", 0, "movement_state", "in_air_state", 1, "jump_state", "walk_speed", 0, "Walk", "jump_state", 0, "Jump", "jump_state", 1, "Fall", "jump_state", 2, "Fall Fast", "movement_state", 0, "Idle", "movement_state", 1, "walk_speed", "movement_state", 2, "run_speed", "run_speed", 0, "Run" ]

@@ -1,139 +1,106 @@
 extends KinematicBody2D
 
-var SPEED = 100.0
+signal animation_finished
+
+var SPEED = 50.0
 
 onready var sprite = $Sprite
-onready var timer: int = rand_range(0, 500)
+onready var grenade_sprite = $Grenade
 
-var label
-var move_position = Vector2.ZERO
-var currently_moving = false
-var freeze_movement = false
-var lock_movement = false
-var origin_color = Color.black
-var attacking = false
-var current_direction = -1
+var label = Label.new()
 
-func _process(delta):
-	if $AnimationTree.get("parameters/state/current") != 2:
-		attacking = false
-	
-	if timer == 0:
-		var value = (randi() % 100 + 1)
-		if value <= 30:
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var max_fall_speed = ProjectSettings.get_setting("physics/2d/default_maximum_fall_speed")
+var motion = Vector2.RIGHT * SPEED
+var direction
+
+onready var attack_timer: int = 50
+var player_in_vision = false
+var targeting = false
+
+func _ready():
+	label.theme = load("Game/DebugTheme.tres")
+	label.text = name
+	add_child(label)
+	label.rect_position = Vector2(0 - (label.rect_size.x / 2), -110)
+
+
+func _process(_delta):
+	if targeting:
+		if attack_timer == 0:
 			$AnimationTree.set("parameters/state/current", 2)
-			attacking = true
+			# warning-ignore:narrowing_conversion
+			attack_timer = rand_range(150, 200)
 		else:
-			while abs(move_position.x) < 50:
-				move_position.x = int(rand_range(-200, 200))
-			$RayCast2D.position.x = move_position.x * -current_direction
-			move_position.x = position.x - move_position.x
-				
-			var target = move_position - position
-			var direction = target.x / abs(target.x)
-			
-			scale.x = direction * current_direction
-			current_direction = direction
-		
-		timer = rand_range(100, 500)
-	elif not currently_moving and not freeze_movement and not lock_movement and not attacking:
-		timer -= 1
-
-	if freeze_movement and Input.is_action_just_released("click"):
-		if lock_movement:
-			origin_color = Color.black
-			sprite.material.set_shader_param("new_color", origin_color)
-			lock_movement = false
-		else:
-			origin_color = Color.aqua
-			sprite.material.set_shader_param("new_color", origin_color)
-			move_position = Vector2.ZERO
-			lock_movement = true
-	
-#	label.text = (
-#		str(move_position.x)
-#		+ ", "
-#		+ str(position.x)
-#		+ ", "
-#		+ str(move_position.x - position.x)
-#		+ "\n"
-#		+ str(currently_moving)
-#		+ ", "
-#		+ str(freeze_movement)
-#		+ ", "
-#		+ str(lock_movement)
-#		+ ", "
-#		+ str(attacking)
-#		+ "\n"
-#		+ str(sprite.flip_h)
-#		+ ", "
-#		+ str(timer)
-#		+ ", "
-#		+ str(scale.x)
-#	)
+			attack_timer -= 1
 
 
 func _physics_process(delta):
-	if move_position.x == 0:
-		return
+	if not $RayCastForward.is_colliding():
+		motion.x = -motion.x
+	
+	if motion.x != 0:
+		$AnimationTree.set("parameters/state/current", 1)
+		direction = motion.x / abs(motion.x)
+		scale = Vector2(-direction * scale.x, abs(scale.y))
+		rotation = 0
+		label.rect_scale.x = scale.x
+		label.rect_position.x = (label.rect_size.x / 2) * (-scale.x / abs(scale.x))
+	else:
+		if not targeting:
+			$AnimationTree.set("parameters/state/current", 0)
+	
+	motion.y += gravity * delta
+	motion.y = min(motion.y, max_fall_speed)
+	
+	motion = move_and_slide(motion)
 
-	if not currently_moving:
-		if $RayCast2D.is_colliding():
-			currently_moving = true
-			$AnimationTree.set("parameters/state/current", 1)
-		else:
-			move_position = position
-			timer = 0
 
-	if move_position.x != position.x:
-		var target = move_position - position
-		var direction = target.x / abs(target.x)
-		$RayCast2D.position.x = target.x * -current_direction
-		move_and_collide(Vector2(direction, 0) * SPEED * delta)
-
-
-	if abs(move_position.x - position.x) < 10:
-		move_position = Vector2.ZERO
-		currently_moving = false
+func _on_vision_entered(_body):
+	player_in_vision = true
+	targeting = true
+	motion.x = 0
+	
+	if $AnimationTree.get("parameters/state/current") != 2:
 		$AnimationTree.set("parameters/state/current", 0)
 
-	label.rect_position = position + Vector2(0 - (label.rect_size.x / 2), -60)
+var test_timer: SceneTreeTimer
+
+func _on_vision_exited(_body):
+	player_in_vision = false
+	if test_timer and test_timer.time_left != 0:
+		test_timer.time_left = 1
+		return
+	
+	test_timer = get_tree().create_timer(1)
+	yield(test_timer, "timeout")
+	test_timer = null
+	
+	if $AnimationTree.get("parameters/state/current") == 2:
+		yield(self, "animation_finished")
+	
+	if not player_in_vision:
+		motion.x = direction * SPEED
+		targeting = false
+		attack_timer = 50
 
 
 func damage_event():
-	sprite.material.set_shader_param("new_color", Color.darkred)
+	sprite.self_modulate = Color.darkred
 	yield(get_tree().create_timer(0.1), "timeout")
-	sprite.material.set_shader_param("new_color", origin_color)
+	sprite.self_modulate = Color.black
 
-
-func is_class(c_name: String):
-	return c_name == "Enemy"
-
-
-var temp_move_position
-
-
-func _on_mouse_entered_hitbox():
-	freeze_movement = true
-	temp_move_position = move_position
-	move_position = Vector2.ZERO
-	pass  # Replace with function body.
-
-
-func _on_mouse_exited_hitbox():
-	freeze_movement = false
-	move_position = temp_move_position
-	pass  # Replace with function body.
-
-
-onready var grenade = $Grenade
 
 func _show_grenade(show_grenade: bool):
-	grenade.visible = show_grenade
+	grenade_sprite.visible = show_grenade
 
 
 func _detach_grenade():
 	var detached_grenade = preload("res://Game/Grenade/Grenade.tscn").instance()
-	detached_grenade.global_position = grenade.global_position
-	detached_grenade.velocity = Vector2(500 * current_direction, -300)
+	detached_grenade.global_position = grenade_sprite.global_position
+	detached_grenade.velocity = Vector2(250 * direction, -300)
 	get_parent().add_child(detached_grenade)
+
+
+func is_class(c_name: String):
+	return c_name == "Enemy"

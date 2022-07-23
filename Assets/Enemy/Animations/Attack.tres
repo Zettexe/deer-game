@@ -22,8 +22,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6, 0.601 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.2, 0.6, 0.601, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [ true ],
 "method": "_show_grenade"
@@ -33,6 +33,9 @@ tracks/1/keys = {
 }, {
 "args": [ false ],
 "method": "_show_grenade"
+}, {
+"args": [ "animation_finished" ],
+"method": "emit_signal"
 } ]
 }
 tracks/2/type = "value"
@@ -45,7 +48,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 8, 18 ), Vector2( 14, 9 ), Vector2( 17, -8 ), Vector2( -39, -5.5 ), Vector2( -34, 0 ) ]
+"values": [ Vector2( 8, -32 ), Vector2( 13, -42 ), Vector2( 16, -59 ), Vector2( -40, -57 ), Vector2( 0, 0 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("AnimationTree:parameters/state/current")

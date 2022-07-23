@@ -1,7 +1,7 @@
 [gd_resource type="Animation" format=2]
 
 [resource]
-resource_name = "Jumping"
+resource_name = "Falling Fast"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Main:frame")
@@ -13,7 +13,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 8 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Main/Gun:position")
@@ -25,7 +25,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 50, -75 ) ]
+"values": [ Vector2( 35, -32.5 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Main/Gun:rotation_degrees")
@@ -37,5 +37,5 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ -25.7 ]
+"values": [ 15.0 ]
 }

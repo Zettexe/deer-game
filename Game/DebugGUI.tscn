@@ -4,64 +4,8 @@
 
 [node name="DebugGUI" type="CanvasLayer"]
 
-[node name="CameraSlider" type="HSlider" parent="."]
-margin_left = 10.0
-margin_top = 25.0
-margin_right = 312.0
-margin_bottom = 45.0
-theme = ExtResource( 1 )
-min_value = 0.5
-max_value = 2.0
-step = 0.1
-value = 1.0
-tick_count = 16
-ticks_on_borders = true
-
-[node name="Label" type="Label" parent="CameraSlider"]
-margin_top = -20.0
-margin_right = 230.0
-margin_bottom = -3.0
-theme = ExtResource( 1 )
-text = "Camera Distance"
-
-[node name="StartValueLabel" type="Label" parent="CameraSlider"]
-margin_left = 98.0
-margin_top = 19.0
-margin_right = 107.0
-margin_bottom = 28.0
-theme = ExtResource( 1 )
-text = "^"
-
-[node name="JumpHeightSlider" type="HSlider" parent="."]
-visible = false
-margin_left = 10.0
-margin_top = 82.0
-margin_right = 312.0
-margin_bottom = 102.0
-theme = ExtResource( 1 )
-min_value = 50.0
-max_value = 900.0
-step = 50.0
-value = 400.0
-tick_count = 18
-ticks_on_borders = true
-
-[node name="Label" type="Label" parent="JumpHeightSlider"]
-margin_top = -20.0
-margin_right = 230.0
-margin_bottom = -3.0
-theme = ExtResource( 1 )
-text = "Jump Height"
-
-[node name="StartValueLabel" type="Label" parent="JumpHeightSlider"]
-margin_left = 120.0
-margin_top = 19.0
-margin_right = 129.0
-margin_bottom = 38.0
-theme = ExtResource( 1 )
-text = "^"
-
 [node name="WeaponModeLabel" type="Label" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 7.0
@@ -81,25 +25,3 @@ margin_bottom = 20.0
 grow_horizontal = 0
 theme = ExtResource( 1 )
 text = "60"
-
-[node name="VariableJumpHeightCheck" type="CheckButton" parent="."]
-visible = false
-margin_left = 7.0
-margin_top = 122.0
-margin_right = 312.0
-margin_bottom = 162.0
-focus_mode = 0
-theme = ExtResource( 1 )
-enabled_focus_mode = 0
-text = "Variable Jump Height"
-
-[node name="DoubleJumpCheck" type="CheckButton" parent="."]
-visible = false
-margin_left = 7.0
-margin_top = 162.0
-margin_right = 312.0
-margin_bottom = 202.0
-focus_mode = 0
-theme = ExtResource( 1 )
-enabled_focus_mode = 0
-text = "Double Jump"

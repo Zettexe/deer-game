@@ -5,7 +5,6 @@
 [ext_resource path="res://Assets/Enemy/Animations/Walk.tres" type="Animation" id=3]
 [ext_resource path="res://Assets/Enemy/Animations/Idle.tres" type="Animation" id=4]
 [ext_resource path="res://Game/Enemy/Enemy.gd" type="Script" id=5]
-[ext_resource path="res://Game/Enemy/DamageShader.tres" type="Material" id=6]
 [ext_resource path="res://Assets/Grenade.png" type="Texture" id=7]
 
 [sub_resource type="AnimationNodeAnimation" id=4]
@@ -27,7 +26,7 @@ input_2/name = "Attack"
 input_2/auto_advance = false
 
 [sub_resource type="AnimationNodeBlendTree" id=2]
-graph_offset = Vector2( -466.827, -2.63428 )
+graph_offset = Vector2( -475, 74.5 )
 nodes/Attack/node = SubResource( 4 )
 nodes/Attack/position = Vector2( -200, 300 )
 nodes/Idle/node = SubResource( 5 )
@@ -42,18 +41,22 @@ node_connections = [ "state", 0, "Idle", "state", 1, "Walk", "state", 2, "Attack
 radius = 14.0
 height = 60.0
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 200, 100 )
+
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 4
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = ExtResource( 6 )
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, -51.3 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 hframes = 5
 vframes = 3
-frame = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = ExtResource( 2 )
@@ -67,26 +70,27 @@ active = true
 parameters/state/current = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 8 )
+position = Vector2( 0, -44 )
 shape = SubResource( 8 )
 
-[node name="Control" type="Control" parent="CollisionShape2D"]
-margin_left = -14.0
-margin_top = -44.0
-margin_right = 14.0
-margin_bottom = 44.0
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 0, 50 )
+[node name="RayCastForward" type="RayCast2D" parent="."]
+position = Vector2( -10, 0 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 collision_mask = 4
 
 [node name="Grenade" type="Sprite" parent="."]
 visible = false
-position = Vector2( 8, 18 )
+position = Vector2( 8, -32 )
 scale = Vector2( 0.01, 0.01 )
 texture = ExtResource( 7 )
 
-[connection signal="mouse_entered" from="CollisionShape2D/Control" to="." method="_on_mouse_entered_hitbox"]
-[connection signal="mouse_exited" from="CollisionShape2D/Control" to="." method="_on_mouse_exited_hitbox"]
+[node name="VisionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
+position = Vector2( -200, 12 )
+shape = SubResource( 9 )
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_exited"]

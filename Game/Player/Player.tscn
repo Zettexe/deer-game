@@ -84,7 +84,8 @@ region_rect = Rect2( 0, 0, 1000, 10000 )
 
 [node name="Gun" type="Sprite" parent="Main"]
 visible = false
-position = Vector2( 60, -90 )
+position = Vector2( 35, -32.5 )
+rotation = 0.261799
 scale = Vector2( 0.175, 0.175 )
 texture = ExtResource( 1 )
 

@@ -9,7 +9,7 @@ func _physics_process(delta):
 	position = lerp(position, position + direction * speed * delta, 1)
 	
 	time_alive_seconds += delta
-	if time_alive_seconds >= 10:
+	if time_alive_seconds >= 2:
 		queue_free()
 
 func _on_body_entered(body):

@@ -103,8 +103,6 @@ func _physics_process(delta):
 			position = player_spawn.position
 		else:
 			position = Vector2.ZERO
-			
-	print(max_fall_speed)
 	
 
 func on_floor_checks():

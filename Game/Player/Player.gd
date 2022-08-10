@@ -18,7 +18,7 @@ onready var player_spawn = get_parent().level.get_node("player_spawn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var max_fall_speed = ProjectSettings.get_setting("physics/2d/default_maximum_fall_speed")
 
-var jump_force = 400
+var jump_force = 450
 var walk_toggle = false
 var direction = 1
 var motion = Vector2()
